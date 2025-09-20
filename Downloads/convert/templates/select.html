@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download All Songs</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        form {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 700px;
+            text-align: center;
+        }
+        button {
+            background-color: #27ae60;
+            color: white;
+            font-size: 18px;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #1e8449;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        li {
+            padding: 10px 5px;
+            border-bottom: 1px solid #eee;
+            font-size: 16px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1>Songs Found</h1>
+
+    <ul>
+        {% for video in videos %}
+            <li>{{ video.title }}</li>
+        {% endfor %}
+    </ul>
+
+    <form method="POST" action="{{ url_for('download') }}">
+        <input type="hidden" name="url" value="{{ url }}">
+        <button type="submit">Download All Songs</button>
+    </form>
+</body>
+</html>
